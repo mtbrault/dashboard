@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { connect } from 'react-redux';
+
 import { Route } from 'react-router-dom';
 
 import MainLayout from './main/mainLayout';
@@ -15,9 +17,14 @@ class App extends Component {
       <MainLayout location={location}/>
     );
   }
-
+  renderAuthLayout({ location }) {
+    return (
+      <AuthLayout location={location}/>
+    );
+  }
   render() {
-      isLogged = this.props;
+    const { isLogged } = false;
+
       if (isLogged) {
         return (
           <Route render={this.renderMainLayout}/>
