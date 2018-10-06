@@ -1,9 +1,17 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+
+
 
 
 module.exports = {
+    devServer: {
+      // ...
+      quiet: true,
+      // ...
+    },
     devtool: 'inline-source-map',
     entry: './src/index.js',
     output: {
@@ -12,6 +20,14 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+              test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+              loader: require.resolve('url-loader'),
+              options: {
+                limit: 10000,
+                name: 'static/media/[name].[hash:8].[ext]',
+              },
+            },
             {
                 test: /\.(js|jsx|mjs)$/,
                 exclude: /node_modules/,
@@ -60,6 +76,7 @@ module.exports = {
         ),
         new OpenBrowserPlugin({
              url: 'http://localhost:8080' 
-        })
+        }),
+        new FriendlyErrorsWebpackPlugin()
     ]
 }
