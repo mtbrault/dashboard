@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+
 
 module.exports = {
     devtool: 'inline-source-map',
@@ -38,7 +40,7 @@ module.exports = {
                   options: {
                     sourceMap: true,
                     javascriptEnabled: true
-                                  }
+                  }
                 }]
               },
               {
@@ -55,6 +57,9 @@ module.exports = {
                 inject: true,
                 template: './public/index.html'
             }
-        )
+        ),
+        new OpenBrowserPlugin({
+             url: 'http://localhost:8080' 
+        })
     ]
 }

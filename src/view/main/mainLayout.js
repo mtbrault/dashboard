@@ -1,10 +1,7 @@
 import React from 'react';
-
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-
 import Header from './header';
 
-import Style from './test.less';
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 
 const { Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
