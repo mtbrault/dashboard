@@ -4,8 +4,10 @@
   "description": "Dashboard project at epitech boilerplate from Zack LAABID",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode-development --open --hot",
-    "build": "webpack --mode production"
+    "start": "webpack-dev-server --mode development --open --hot",
+    "build": "webpack --mode production",
+    "lint": "./node_modules/.bin/eslint src",
+    "lint-fixup": "./node_modules/.bin/eslint src --ext .js,.jsx --fix"   
   },
   "repository": {
     "type": "git",
@@ -19,17 +21,30 @@
   "homepage": "https://gitlab.com/zackfalcon/dashboard-epitech#readme",
   "dependencies": {
     "antd": "^3.10.0",
+    "less": "^3.8.1",
+    "prop-types": "^15.6.2",
     "react-redux": "^5.0.7",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.4",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-import": "^1.9.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "css-loader": "^1.0.0",
+    "eslint": "^5.6.1",
+    "eslint-plugin-babel": "^5.2.1",
+    "eslint-plugin-react": "^7.11.1",
     "html-webpack-plugin": "^3.2.0",
+    "less-loader": "^4.1.0",
     "react": "^16.5.2",
+    "react-dev-utils": "^6.0.4",
     "react-dom": "^16.5.2",
+    "style-loader": "^0.23.0",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.9"

@@ -4,6 +4,8 @@ import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 
 import Header from './header';
 
+import Style from './test.less';
+
 const { Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
@@ -23,8 +25,8 @@ class MainLayout extends React.PureComponent {
 
   render() {
     return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Header />
+      <Layout style={{ minHeight: '100vh' }}>
+        <Header />
         <Layout>
           <Sider width={220} >
             <Menu
@@ -64,13 +66,13 @@ class MainLayout extends React.PureComponent {
               Content
             </Content>
 
-        <Footer style={{ textAlign: 'center' }}>
-      ZAckiIntra ©2018 Created by Zacki Chan
+            <Footer style={{ textAlign: 'center' }} >
+              ZAckiIntra ©2018 Created by Zacki Chan
     </Footer>
           </Layout>
-          
+
         </Layout>
-        
+
       </Layout>);
   }
 }
