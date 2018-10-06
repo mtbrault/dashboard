@@ -1,16 +1,12 @@
 const path = require('path');
+
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
-
-
-
 module.exports = {
     devServer: {
-      // ...
       quiet: true,
-      // ...
     },
     devtool: 'inline-source-map',
     entry: './src/index.js',
@@ -44,15 +40,15 @@ module.exports = {
               {
                 test: /\.less$/,
                 use: [{
-                  loader: 'style-loader' // creates style nodes from JS strings
+                  loader: 'style-loader'
                 }, {
-                  loader: 'css-loader', // translates CSS into CommonJS
+                  loader: 'css-loader',
                   options: {
                     modules: true,
                     localIdentName: '[path][name]__[local]--[hash:base64:5]'
                   }
                 }, {
-                  loader: 'less-loader', // compiles Less to CSS
+                  loader: 'less-loader',
                   options: {
                     sourceMap: true,
                     javascriptEnabled: true
@@ -77,6 +73,21 @@ module.exports = {
         new OpenBrowserPlugin({
              url: 'http://localhost:8080' 
         }),
-        new FriendlyErrorsWebpackPlugin()
+        new FriendlyErrorsWebpackPlugin(
+           {
+            compilationSuccessInfo: {
+              messages: ['Hello Zack & Matthieu the application is runing at http://localhost:8080'],
+              notes: ['Attention à bien push ! :)']
+            },
+            onErrors: function (severity, errors) {
+              console.log(errors);
+              console.log(severity);
+            },
+            clearConsole: true,
+
+            additionalFormatters: [],
+            additionalTransformers: []
+           }
+        )
     ]
 }
