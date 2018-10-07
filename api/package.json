@@ -4,11 +4,11 @@
   "description": "Api for the dashboard",
   "main": "index.js",
   "scripts": {
-    "prod": "pm2 start ./src/index.js --name dashboard-api",
+    "prod": "pm2 start ./src/app.js --name dashboard-api",
     "monit": "pm2 monit",
     "list": "pm2 list",
     "restart": "pm2 restart",
-    "start": "nodemon ./src/index.js"
+    "start": "nodemon ./src/app.js"
   },
   "repository": {
     "type": "git",

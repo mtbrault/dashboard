@@ -1,12 +1,11 @@
-import { createStore, combineReducers } from 'redux';
-import { reducer as reduxFormReducer } from 'redux-form';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
 
-const reducer = combineReducers({
-  form: reduxFormReducer, // mounted under "form"
-});
+const inititalState = {};
 
-const store = (window.devToolsExtension
-  ? window.devToolsExtension()(createStore)
-  : createStore)(reducer);
+const store = createStore(rootReducer, inititalState, 
+compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__()));
 
 export default store;
