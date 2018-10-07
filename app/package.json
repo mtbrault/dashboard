@@ -21,6 +21,7 @@
   "homepage": "https://gitlab.com/zackfalcon/dashboard-epitech#readme",
   "dependencies": {
     "antd": "^3.10.0",
+    "axios": "^0.18.0",
     "create-react-app": "^2.0.3",
     "less": "^3.8.1",
     "prop-types": "^15.6.2",

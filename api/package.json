@@ -4,7 +4,11 @@
   "description": "Api for the dashboard",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prod": "pm2 start ./src/index.js --name dashboard-api",
+    "monit": "pm2 monit",
+    "list": "pm2 list",
+    "restart": "pm2 restart",
+    "start": "nodemon ./src/index.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +21,18 @@
   },
   "homepage": "https://gitlab.com/zackfalcon/dashboard-epitech#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "express-generator": "^4.16.0"
+    "express-generator": "^4.16.0",
+    "gravatar": "^1.6.0",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.3.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
   }
 }
