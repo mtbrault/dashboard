@@ -1,0 +1,23 @@
+{
+  "name": "dashboard-epitech",
+  "version": "1.0.0",
+  "description": "Api for the dashboard",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/zackfalcon/dashboard-epitech.git"
+  },
+  "author": "Zakaria LAABID & Matthieu BRAULT",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/zackfalcon/dashboard-epitech/issues"
+  },
+  "homepage": "https://gitlab.com/zackfalcon/dashboard-epitech#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-generator": "^4.16.0"
+  }
+}
