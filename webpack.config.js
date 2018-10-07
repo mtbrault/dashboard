@@ -1,5 +1,7 @@
 const path = require('path');
 
+
+const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
@@ -9,7 +11,10 @@ module.exports = {
       quiet: true,
     },
     devtool: 'inline-source-map',
-    entry: './src/index.js',
+    entry: [
+      require.resolve('react-dev-utils/webpackHotDevClient'),
+      './src/index.js'
+  ],
     output: {
         path: path.join(__dirname, '/dist'),
         filename: 'index_bundle.js'
@@ -24,6 +29,12 @@ module.exports = {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
             },
+/*            {
+              enforce: "pre",
+              test: /\.(js|jsx|mjs)$/,
+              exclude: /node_modules/,
+              loader: "eslint-loader",
+            },*/
             {
                 test: /\.(js|jsx|mjs)$/,
                 exclude: /node_modules/,
@@ -70,6 +81,8 @@ module.exports = {
                 template: './public/index.html'
             }
         ),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
         new OpenBrowserPlugin({
              url: 'http://localhost:8080' 
         }),
@@ -84,7 +97,6 @@ module.exports = {
               console.log(severity);
             },
             clearConsole: true,
-
             additionalFormatters: [],
             additionalTransformers: []
            }

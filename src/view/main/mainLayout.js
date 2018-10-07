@@ -65,7 +65,7 @@ class MainLayout extends React.PureComponent {
 
             <Footer style={{ textAlign: 'center' }} >
               ZAckiIntra ©2018 Created by Zacki Chan
-    </Footer>
+        </Footer>
           </Layout>
 
         </Layout>
