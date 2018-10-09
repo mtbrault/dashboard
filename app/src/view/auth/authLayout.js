@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 import Styles from './authLayout.less';
 import logoEpitech from '../../../assets/logo.png';
+import classnames from 'classnames';
 
 const FormItem = Form.Item;
 
@@ -41,8 +42,8 @@ class AuthLayout extends React.PureComponent {
             });
         }
     }
-
     render () {
+        const {errors} = this.state;
         return (
             <div className={Styles.form}>
                 <div className={Styles.logo}>
@@ -51,7 +52,11 @@ class AuthLayout extends React.PureComponent {
                 <form onSubmit={this.handleSubmit}>
                     <FormItem hasFeedback>
                         <Input type="text" placeholder="Email" name="email" 
-                               onChange={this.handleInputChange} value={this.state.email} />
+                               onChange={this.handleInputChange} value={this.state.email} 
+                               className={classnames('form-control form-control-lg', {
+                                'is-invalid': errors.name
+                            })}
+                        />
                     </FormItem>
                     <FormItem hasFeedback>
                         <Input type="password" placeholder="Mot de passe" name="password"
@@ -66,13 +71,13 @@ class AuthLayout extends React.PureComponent {
                             Connexion Office 365
                         </Button>
                     </Row>
-                    
                 </form>
+                {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
+                {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
             </div>
         );
     }
 }
-
 
 AuthLayout.propTypes = {
     errors: PropTypes.object.isRequired
@@ -81,5 +86,5 @@ AuthLayout.propTypes = {
 const mapStateToProps = (state) => ({
     errors: state.errors
 })
-
+ 
 export  default connect(mapStateToProps, { loginUser })(AuthLayout)

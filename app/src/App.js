@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
 import { LocaleProvider } from 'antd';
 import frFR from 'antd/lib/locale-provider/fr_FR';
-
 import App from './view';
 
-import { store } from './redux/store';
+import store from './redux/store';
 
 import './App.css';
 
