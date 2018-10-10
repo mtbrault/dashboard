@@ -1,28 +1,37 @@
-//app.js
-
+//Dependencies npm
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+// Require file.
 const config = require('./db');
-
-const users = require('./routes/user'); 
+const users = require('./routes/user');
 
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
-    () => {console.log('Database is connected') },
-    err => { console.log('Can not connect to the database'+ err)}
+    () => { console.log('Database is connected') },
+    err => { console.log('Can not connect to the database' + err) }
 );
 
 const app = express();
+
+// Passport
 app.use(passport.initialize());
 require('./passport')(passport);
-
+//Express bodyparser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
+
 app.use('/api/users', users);
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
     res.send('hello');
 });
 

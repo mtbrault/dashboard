@@ -8,7 +8,8 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 module.exports = {
     devServer: {
-      quiet: true,
+      historyApiFallback: true,
+      quiet: true
     },
     devtool: 'inline-source-map',
     entry: [
@@ -17,7 +18,8 @@ module.exports = {
   ],
     output: {
         path: path.join(__dirname, '/dist'),
-        filename: 'index_bundle.js'
+        filename: 'index_bundle.js',
+        publicPath: '/'
     },
     module: {
         rules: [

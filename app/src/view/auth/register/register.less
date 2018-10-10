@@ -1,30 +1,7 @@
 
-@import '../../themes/vars.less';
+@import '../../../themes/vars.less';
 
-.btnOffice {
-  background: rgb(227, 61, 38);
-  border-radius: 0px;
-  color: white;
-  font-weight: 100 !important;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 0px 8px;
-}
-
-.btnOffice img {
-  width: 40%;
-}
-
-.btnOffice:hover {
-  background: rgb(248, 93, 73);
-
-}
-
-.textAuth {
+.backSmoothBtn {
   text-align: center;
   color: gray;
   font-size: 9px;
@@ -33,19 +10,45 @@
   margin-top: 15px;
 }
 
-.btnInscription {
-  background: rgba(108, 241, 108, 0.856);
-  border: rgba(73, 226, 73, 0.856);
-  margin-top: 20px;
+.loginBtn {
+
+  text-align: center;
+  font-size: 9px;
+  margin: auto;
+  display: block;
+  margin-top: 5px;
 }
 
-.btnInscription:hover {
-  background: rgba(140, 253, 140, 0.856);
+
+.is-invalid {
+  border: 1px solid red;
 }
 
+.errorText {
+  color: rgba(255, 84, 84, 0.897);
+  font-weight: bold;
+}
 
-.btnInscription:focus {
-  background: rgb(76, 202, 76);
+.errorAlert {
+  color: red;
+  text-align: center;
+  margin: 20px;
+  display: block;
+  padding: 1px 15px !important;
+  font-size: 10px;
+}
+
+.btnoffice {
+    width: 80% !important;
+    background-color: rgb(219, 62, 37);
+    border: none;
+    margin: auto;
+    display: block;
+}
+
+.btnoffice:hover {
+    background-color: rgb(218, 86, 65);
+    border: none;
 }
 
 .spacer {
@@ -59,7 +62,7 @@
   left: 50%;
   margin: -160px 0 0 -160px;
   width: 300px;
-  height: auto;
+  height: 450px;
   padding: 36px;
   box-shadow: 0 0 100px rgba(0,0,0,.08);
 
