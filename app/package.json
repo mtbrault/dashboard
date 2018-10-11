@@ -25,11 +25,13 @@
     "create-react-app": "^2.0.3",
     "jwt-decode": "^2.2.0",
     "less": "^3.8.1",
+    "msal": "^0.2.3",
     "prop-types": "^15.6.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "smal": "^0.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

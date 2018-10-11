@@ -5,18 +5,11 @@ import { Link } from 'react-router-dom';
 
 import logoEpitech from '../../../assets/logo.png';
 import Styles from './authLayout.less';
+import LoginAzureAD from './loginAzureAD';
 
 class AuthLayout extends React.PureComponent {
     
     render() {
-        const OfficeBtn = () => {
-            return (
-                <div className={Styles.btnOffice}>Connexion avec 
-                    <img src="https://www.elevatepoint.com/wp-content/uploads/2017/06/office365-1024x409.png"/>
-                </div>
-            );
-        };
-
         return (
 
             <div className={Styles.form}>
@@ -31,7 +24,7 @@ class AuthLayout extends React.PureComponent {
                     <Button type="primary" icon="user-add" size="large" 
                     className={Styles.btnInscription}>Inscription</Button>
                 </Link>
-                <OfficeBtn />
+                <LoginAzureAD />
                 <span className={Styles.textAuth}>Created by ZackiChan & Matthias LeBrolt</span>
             </div>
         );
