@@ -1,12 +1,17 @@
 image: node:8.12.0
 
-before_script:
-- npm install
-
 stages:
-  - install
+  - install_app
+  - testing_app
 
-installation:
-  stage: install
+installation_app:
+  stage: install_app
   script:
-    - ls
+    - cd app
+    - npm install
+
+test_app:
+  stage: testing_app
+  script:
+    - cd app
+    - npm start
