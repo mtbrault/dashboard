@@ -31,7 +31,7 @@ class MainLayout extends React.PureComponent {
               theme="dark"
               defaultSelectedKeys={['1']}
               defaultOpenKeys={['sub1']}
-              style={{ height: '100%', borderRight: 0 }}
+              style={{ height: '100%', borderRight: 0}}
             >
               <SubMenu key="sub1" title={<span><Icon type="user" />subnav 1</span>}>
                 <Menu.Item key="1">qsdqs</Menu.Item>

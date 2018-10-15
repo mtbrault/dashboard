@@ -24,11 +24,11 @@ class MainHeader extends React.PureComponent {
                 theme="dark"
                 mode="horizontal"
                 defaultSelectedKeys={['2']}
-                style={{ lineHeight: '64px' }}
+                style={{ lineHeight: '64px', margin: 0, display: 'block', textAlign: 'center'}}
             >
-                <Menu.Item key="1">nav 1</Menu.Item>
-                <Menu.Item key="2">nav 2</Menu.Item>
-                <Menu.Item key="3">nav 3</Menu.Item>
+                <Menu.Item key="1">Widget 1</Menu.Item>
+                <Menu.Item key="2">Widget 2</Menu.Item>
+                <Menu.Item key="3">Widget 3</Menu.Item>
                 <Menu.Item key="4" onClick={this.onLogout.bind(this)}>Déconnexion</Menu.Item>
             </Menu>
             </Header>
