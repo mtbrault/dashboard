@@ -4,7 +4,7 @@
   "description": "Dashboard project at epitech boilerplate from Zack LAABID",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --hot",
+    "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
     "lint": "./node_modules/.bin/eslint src",
     "lint-fixup": "./node_modules/.bin/eslint src --ext .js,.jsx --fix"

@@ -1,0 +1,14 @@
+version: '3.5'
+services:
+    dashboardtest:
+        container_name: dashboardtest
+        build:
+            context: ./app
+            dockerfile: Dockerfile
+        volumes:
+            - './app:/usr/src/app'
+            - /usr/src/app/node_modules
+        ports:
+            - '3000:3000'
+        environment:
+            - NODE_ENV=development

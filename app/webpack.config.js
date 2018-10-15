@@ -1,15 +1,14 @@
 const path = require('path');
 
-
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 module.exports = {
     devServer: {
       historyApiFallback: true,
-      quiet: true
+      quiet: true,
+      port: 8080
     },
     devtool: 'inline-source-map',
     entry: [
@@ -85,9 +84,6 @@ module.exports = {
         ),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new OpenBrowserPlugin({
-             url: 'http://localhost:8080' 
-        }),
         new FriendlyErrorsWebpackPlugin(
            {
             compilationSuccessInfo: {
