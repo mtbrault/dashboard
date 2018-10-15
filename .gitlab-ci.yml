@@ -17,7 +17,7 @@ starttest_app:
   script:
     - cd app
     - npm install
-    - npm start
+    - npm run build
 
 installation_api:
   stage: install_api
@@ -30,4 +30,3 @@ starttest_api:
   script:
     - cd api
     - npm install
-    - npm start
