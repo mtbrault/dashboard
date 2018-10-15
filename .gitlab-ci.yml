@@ -1,0 +1,12 @@
+image: node:8.12.0
+
+before_script:
+- npm install
+
+stages:
+  - install
+
+installation:
+  stage: install
+  script:
+    - npm install
