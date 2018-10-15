@@ -9,4 +9,4 @@ stages:
 installation:
   stage: install
   script:
-    - npm install
+    - ls
