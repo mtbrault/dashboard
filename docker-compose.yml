@@ -1,14 +1,25 @@
 version: '3.5'
 services:
-    dashboardtest:
-        container_name: dashboardtest
+    dashboardapi:
+        container_name: dashboardapi
         build:
-            context: ./app
+            context: ./api
             dockerfile: Dockerfile
         volumes:
-            - './app:/usr/src/app'
-            - /usr/src/app/node_modules
+            - './api:/usr/src/api'
+            - /usr/src/api/node_modules
         ports:
-            - '3000:3000'
+            - '5000:5000'
+        links:
+            - mongo
+        depends_on:
+            - mongo
         environment:
             - NODE_ENV=development
+    mongo:
+        container_name: mongo
+        image: mongo
+        volumes:
+            - ./mongodb/data:/data/db
+        ports:
+            - '27017:27017'

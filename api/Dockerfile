@@ -6,9 +6,15 @@ WORKDIR /usr/src/api
 
 ENV PATH /usr/src/api/node_modules/.bin:$PATH
 
-COPY package.json /usr/src/app/package.json
-RUN npm install --silent
-RUN npm install react-scripts@1.1.1 -g --silent
+COPY package.json /usr/src/api/package.json
+
+EXPOSE 5000
+
+## Launch the wait tool and then your application
+
+RUN npm install
+RUN npm install -g nodemon
+
 
 # start app
-CMD ["npm", "start"]
+CMD sleep 5 && npm start
