@@ -28,7 +28,7 @@ if(localStorage.jwtToken) {
       store.dispatch(logoutUser());
       window.location.href = '/auth'
     }
-  }
+}
 
 class Root extends Component {
     render () {
@@ -37,11 +37,11 @@ class Root extends Component {
                 <Provider store={store}>
                     <Router>
                         <Switch>
-                            <Route exact path="/" component={MainLayout}/>
+                            <Route path="/" component={MainLayout}/>
                             <Route exact path="/auth" component={AuthLayout}/>
                             <Route exact path="/auth/login" component={LoginLayout}/> 
                             <Route exact path="/auth/register" component={RegisterLayout}/> 
-                         </Switch>
+                        </Switch>
                     </Router>
                 </Provider>
             </LocaleProvider>

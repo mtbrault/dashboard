@@ -23,6 +23,18 @@ const UserSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    services: {
+        weather: {
+            city: []
+        },
+        facebook: {
+            profile_pic_url: String,
+            token: String,
+        },
+        twitter: {
+            posts: Number
+        }
     }
 });
 

@@ -10,8 +10,6 @@ COPY package.json /usr/src/api/package.json
 
 EXPOSE 5000
 
-## Launch the wait tool and then your application
-
 RUN npm install
 RUN npm install -g nodemon
 

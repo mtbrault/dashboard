@@ -1,15 +1,15 @@
 import React from 'react';
-import Header from './header';
+import Slider from './sider';
 
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import Meteo from './services/meteo';
 
-const { Content, Footer, Sider } = Layout;
-const SubMenu = Menu.SubMenu;
+import { Route, Switch, withRouter } from 'react-router-dom';
+
+import { Layout, Breadcrumb } from 'antd';
+
+const { Footer } = Layout;
 
 class MainLayout extends React.PureComponent {
-  constructor(props) {
-    super(props);
-  }
 
   state = {
     collapsed: false,
@@ -23,48 +23,18 @@ class MainLayout extends React.PureComponent {
   render() {
     return (
       <Layout style={{ minHeight: '100vh' }}>
-        <Header />
         <Layout>
-          <Sider width={220} >
-            <Menu
-              mode="inline"
-              theme="dark"
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
-              style={{ height: '100%', borderRight: 0}}
-            >
-              <SubMenu key="sub1" title={<span><Icon type="user" />subnav 1</span>}>
-                <Menu.Item key="1">qsdqs</Menu.Item>
-                <Menu.Item key="2">option2</Menu.Item>
-                <Menu.Item key="3">option3</Menu.Item>
-                <Menu.Item key="4">option4</Menu.Item>
-              </SubMenu>
-              <SubMenu key="sub2" title={<span><Icon type="laptop" />subnav 2</span>}>
-                <Menu.Item key="5">option5</Menu.Item>
-                <Menu.Item key="6">option6</Menu.Item>
-                <Menu.Item key="7">option7</Menu.Item>
-                <Menu.Item key="8">option8</Menu.Item>
-              </SubMenu>
-              <SubMenu key="sub3" title={<span><Icon type="notification" />subnav 3</span>}>
-                <Menu.Item key="9">option9</Menu.Item>
-                <Menu.Item key="10">option10</Menu.Item>
-                <Menu.Item key="11">option11</Menu.Item>
-                <Menu.Item key="12">option12</Menu.Item>
-              </SubMenu>
-            </Menu>
-          </Sider>
+          <Slider />
           <Layout style={{ padding: '0 24px 24px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
+            <Breadcrumb style={{ margin: '16px 0', textAlign: "center" }}>
+              <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
+              <Breadcrumb.Item>Service</Breadcrumb.Item>
             </Breadcrumb>
-            <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
-              Content
-            </Content>
-
+            <Switch>
+              <Route exact path="/services/meteo" component={Meteo} />
+            </Switch>
             <Footer style={{ textAlign: 'center' }} >
-              ZAckiIntra ©2018 Created by Zacki Chan
+              Dashboard Epitech @2018 Created By Zakaria LAABID & Matthieu Brault
             </Footer>
           </Layout>
 
@@ -74,4 +44,4 @@ class MainLayout extends React.PureComponent {
   }
 }
 
-export default MainLayout;
+export default withRouter(MainLayout);
