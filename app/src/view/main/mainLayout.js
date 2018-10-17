@@ -4,6 +4,7 @@ import Slider from './sider';
 import MyAccount from './myAccount';
 
 import Meteo from './services/meteo';
+import Bourse from './services/bourse';
 
 import { Route, Switch, withRouter } from 'react-router-dom';
 
@@ -34,6 +35,7 @@ class MainLayout extends React.PureComponent {
             </Breadcrumb>
             <Switch>
             <Route exact path="/services/meteo" component={Meteo} />
+            <Route exact path="/services/bourse" component={Bourse} />
             <Route exact path="/myaccount" component={MyAccount} />
             </Switch>
             <Footer style={{ textAlign: 'center' }} >

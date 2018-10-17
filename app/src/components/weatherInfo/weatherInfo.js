@@ -50,7 +50,11 @@ class WeatherInfo extends React.Component {
         country: undefined,
         humidity: undefined,
         description: undefined,
-        error: undefined
+        error: undefined,
+        options: {
+            celsius: true,
+            fahreint: false
+        }
     }
     getWeather = async (ville) => {
         const country = ville;
