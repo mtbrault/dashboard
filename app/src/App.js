@@ -37,10 +37,10 @@ class Root extends Component {
                 <Provider store={store}>
                     <Router>
                         <Switch>
-                            <Route path="/" component={MainLayout}/>
                             <Route exact path="/auth" component={AuthLayout}/>
                             <Route exact path="/auth/login" component={LoginLayout}/> 
                             <Route exact path="/auth/register" component={RegisterLayout}/> 
+                            <Route path="/" component={MainLayout}/>
                         </Switch>
                     </Router>
                 </Provider>

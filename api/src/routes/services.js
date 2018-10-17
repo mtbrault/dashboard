@@ -5,12 +5,12 @@ const router = express.Router();
 
 const User = require('../models/Users');
 
-router.post('/services/weather', function(req, res) {
-    const email = req.body.email;
+// router.post('/services/weather', function(req, res) {
+//     const email = req.body.email;
 
-    User.findOne({email}).then(user => {
-        console.log(user.service);
-    });
-}); 
+//     User.findOne({email}).then(user => {
+//         console.log(user.service);
+//     });
+// }); 
 
 module.exports = router;

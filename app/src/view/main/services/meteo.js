@@ -7,8 +7,14 @@ import WeatherInfo from '../../../components/weatherInfo';
 
 const API_KEY = "403df07bdf873cdb79affc3a3afcc213";
 
+const services = {
+  weather: {
+    city: ["Paris", "Lille", "Londre"]
+  }
+};
+
 class Meteo extends React.PureComponent {
-  state = {
+  state = { 
     temperature: undefined,
     city: undefined,
     country: undefined,
@@ -16,8 +22,8 @@ class Meteo extends React.PureComponent {
     description: undefined,
     error: undefined
   }
-  getWeather = async (e) => {
-    const country = "Paris";
+  getWeather = async (ville) => {
+    const country = ville;
     const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${country}&appid=${API_KEY}&units=metric`);
     const data = await api_call.json();
     console.log(data);
@@ -29,11 +35,6 @@ class Meteo extends React.PureComponent {
       description: data.weather[0].description,
       error: ""
     })
-
-  }
-
-  componentWillMount() {
-    this.getWeather();
   }
 
   render() {

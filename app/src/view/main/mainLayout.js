@@ -1,6 +1,8 @@
 import React from 'react';
 import Slider from './sider';
 
+import MyAccount from './myAccount';
+
 import Meteo from './services/meteo';
 
 import { Route, Switch, withRouter } from 'react-router-dom';
@@ -31,7 +33,8 @@ class MainLayout extends React.PureComponent {
               <Breadcrumb.Item>Service</Breadcrumb.Item>
             </Breadcrumb>
             <Switch>
-              <Route exact path="/services/meteo" component={Meteo} />
+            <Route exact path="/services/meteo" component={Meteo} />
+            <Route exact path="/myaccount" component={MyAccount} />
             </Switch>
             <Footer style={{ textAlign: 'center' }} >
               Dashboard Epitech @2018 Created By Zakaria LAABID & Matthieu Brault
