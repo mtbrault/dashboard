@@ -10,16 +10,16 @@ const API_KEY = "403df07bdf873cdb79affc3a3afcc213";
 
 class WeatherInfo extends React.Component {
     constructor(props) {
-        super(props);    
-}
-state = { 
-    temperature: undefined,
-    city: undefined,
-    country: undefined,
-    humidity: undefined,
-    description: undefined,
-    error: undefined
-  }
+        super(props);
+    }
+    state = {
+        temperature: undefined,
+        city: undefined,
+        country: undefined,
+        humidity: undefined,
+        description: undefined,
+        error: undefined
+    }
     getWeather = async (ville) => {
         const country = ville;
         const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${country}&appid=${API_KEY}&units=metric`);
@@ -32,7 +32,6 @@ state = {
             description: data.weather[0].description,
             error: ""
         })
-        console.log(this.state.temperature);
     }
 
     componentWillMount() {
