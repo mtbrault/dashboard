@@ -34,8 +34,6 @@ class MainLayout extends React.PureComponent {
               <Breadcrumb.Item>Service</Breadcrumb.Item>
             </Breadcrumb>
             <Switch>
-            <Route exact path="/services/meteo" component={Meteo} />
-            <Route exact path="/services/bourse" component={Bourse} />
             <Route exact path="/myaccount" component={MyAccount} />
             </Switch>
             <Footer style={{ textAlign: 'center' }} >

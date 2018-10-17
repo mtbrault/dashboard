@@ -4,31 +4,25 @@ import { Card, Layout, Col, Row, Icon } from 'antd';
 
 import BourseInfo from '../../../components/bourseInfo';
 
-
-const services = {
-    bourse: {
-        crypto: [{
-            name: "ETH",
-            conversion: "USD"
-        }, {
-            name: "BTC",
-            conversion: "USD"
-        }]
-    }
-};
-
 class Bourse extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            arrCrypto: services.bourse.crypto
+            arrCrypto: this.props.bourse.crypto
         }
+    }
+
+    deleteCrypto(keyCrypto) {
+        var array = [...this.state.arrCrypto];
+        var index = array.indexOf(keyCrypto.name);
+        array.splice(index, 1);
+        this.setState({ arrCrypto: array });
     }
 
     render() {
         return (
             <Layout>
-                <Row gutter={16} style={{ marginLeft: "40px" }}>
+                <Row gutter={16} style={{ marginLeft: "40px", marginTop: 15 }}>
                     {this.state.arrCrypto.map(crypto => {
                         return (
                             <Col span={8} key={crypto.name}>
@@ -37,7 +31,7 @@ class Bourse extends React.PureComponent {
                                     actions={
                                         [
                                             <Icon type="setting" />,
-                                            <Icon type="delete" />
+                                            <Icon type="delete" onClick={this.deleteCrypto.bind(this, { crypto })} />
                                         ]
                                     }
                                 >

@@ -36,13 +36,6 @@ class Siders extends React.PureComponent {
             >
               <SubMenu key="sub1" title={<span><Icon type="appstore" theme="outlined" />Dashboard</span>}>
                 <Menu.Item key="myaccount"><NavLink to="/myaccount"><Icon type="user" theme="outlined" />Mon compte</NavLink></Menu.Item>
-                <SubMenu key="sub3" title={<ServicesComp />}>
-                  <Menu.Item key="meteo"><NavLink to="/services/meteo"><Icon type="cloud" theme="outlined" />Méteo</NavLink></Menu.Item>
-                  <Menu.Item key="bourse"><NavLink to="/services/bourse"><Icon type="fund" theme="outlined" />Bourse</NavLink></Menu.Item>
-                  <Menu.Item key="facebook"><NavLink to="/service/facebook"><Icon type="facebook" theme="outlined" />Facebook</NavLink></Menu.Item>
-                  <Menu.Item key="twitter"><NavLink to="/service/twitter"><Icon type="twitter" theme="outlined" />Twitter</NavLink></Menu.Item>
-                  <Menu.Item key="youtube"><NavLink to="/service/youtube"><Icon type="youtube" theme="outlined" />Youtube</NavLink></Menu.Item>
-                </SubMenu>
                 <Menu.Item key="10" onClick={this.onLogout.bind(this)}><Icon type="logout" theme="outlined" />Déconnexion</Menu.Item>
               </SubMenu>
             </Menu>
