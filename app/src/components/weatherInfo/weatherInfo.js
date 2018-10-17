@@ -7,6 +7,38 @@ import ColdImg from './weatherImages/cold.png';
 
 const API_KEY = "403df07bdf873cdb79affc3a3afcc213";
 
+const HotTemp = ({temperature}) => {
+    return (
+        <div>
+            <span className={Style.hot}>
+                {temperature}<sup>°C</sup>
+            </span>
+            <img src={SunImg} />
+        </div>
+    );
+}
+
+const ColdTemp = ({temperature}) => {
+    return (
+        <div>
+            <span className={Style.cold}>
+                {temperature}<sup>°C</sup>
+            </span>
+            <img src={ColdImg} />
+        </div>
+    );
+}
+
+const NormalTemp = ({temperature}) => {
+    return (
+        <div>
+            <span>
+                {temperature}<sup>°C</sup>
+            </span>
+            <img src={WeatherImg} />
+        </div>
+    );
+}
 
 class WeatherInfo extends React.Component {
     constructor(props) {
@@ -41,10 +73,12 @@ class WeatherInfo extends React.Component {
         return (
             <div>
                 <div className={Style.temperature}>
-                    <span>
-                        {this.state.temperature}<sup>°C</sup>
-                    </span>
-                    <img src={WeatherImg} />
+                    {this.state.temperature >= 11 && this.state.temperature <= 20 &&
+                        <NormalTemp temperature={this.state.temperature} />}
+                    {this.state.temperature >= -10 && this.state.temperature <= 10 &&
+                        <ColdTemp temperature={this.state.temperature} />}
+                    {this.state.temperature >= 21 && this.state.temperature <= 40 &&
+                        <HotTemp temperature={this.state.temperature} />}
                 </div>
                 <hr style={{ opacity: 0.5 }}></hr>
                 <div>
