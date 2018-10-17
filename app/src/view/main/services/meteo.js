@@ -13,6 +13,9 @@ class Meteo extends React.PureComponent {
     };
   }
 
+  addNewCity(newCity) {
+    this.setState({ arrWeather: [...this.state.arrWeather, newCity]})
+  }
 
   deleteCity(keyCity) {
     var array = [...this.state.arrWeather];
@@ -25,10 +28,10 @@ class Meteo extends React.PureComponent {
     return (
       <Layout>
 
-        <Row gutter={16} style={{ marginLeft: "40px" }}>
+        <Row gutter={16} style={{ marginLeft: "40px"}}>
           {this.state.arrWeather.map(ville => {
             return (
-              <Col span={8} key={ville}>
+              <Col span={8} key={ville} style={{marginTop: "15px", marginBottom: "15px"}}>
                 <Card
                   style={{ width: 300 }}
                   cover={<img alt="example" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Paris_-_Eiffelturm_und_Marsfeld2.jpg/1200px-Paris_-_Eiffelturm_und_Marsfeld2.jpg" width="298" height="180" />}

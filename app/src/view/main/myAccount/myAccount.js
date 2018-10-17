@@ -3,10 +3,9 @@ import React from 'react';
 import { Layout, Col, Row, Card, Icon, Modal, Form, Input, Select } from 'antd';
 
 // import Style from './myAccount.less';
-
-import FacebookCard from '../../../components/facebookCard';
-import TwitterCard from '../../../components/twitterCard';
-import GoogleCard from '../../../components/googleCard';
+// import FacebookCard from '../../../components/facebookCard';
+// import TwitterCard from '../../../components/twitterCard';
+// import GoogleCard from '../../../components/googleCard';
 
 
 import Meteo from '../services/meteo';
@@ -62,6 +61,8 @@ class MyAccount extends React.PureComponent {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.meteo = React.createRef();
+        this.bourse = React.createRef();
     }
 
     handleInputChange(e) {
@@ -76,7 +77,6 @@ class MyAccount extends React.PureComponent {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log("lol");
     }
 
     addWidget = () => {
@@ -85,8 +85,25 @@ class MyAccount extends React.PureComponent {
         });
     }
 
-    handleOk = (e) => {
-        e.preventDefault();
+    handleOk = () => {
+        switch(this.state.selectValue) {
+            case "meteo":
+            if (this.state.inputCity.length > 2) {
+                this.meteo.current.addNewCity(this.state.inputCity);
+                this.handleCancel();
+            }
+            break;
+            case "bourse":
+            const newCrypto = {
+                name: this.state.inputCrypto,
+                conversion: this.state.inputTarget
+            }
+            this.bourse.current.addCrypto(newCrypto);
+            this.handleCancel();
+            break;
+            default:
+                break;
+        }
     }
 
     handleCancel = (e) => {
@@ -110,7 +127,7 @@ class MyAccount extends React.PureComponent {
                             <Select
                                 showSearch
                                 style={{ width: 200 }}
-                                placeholder="Select a widget"
+                                placeholder="Sélectionner un widget"
                                 optionFilterProp="children"
                                 onChange={this.handleChange}
                                 filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
@@ -125,8 +142,8 @@ class MyAccount extends React.PureComponent {
                         </FormItem>
                     </form>
                 </Modal>
-                <Meteo {...this.state.services} />
-                <Bourse {...this.state.services} />
+                <Meteo {...this.state.services} ref={this.meteo} />
+                <Bourse {...this.state.services} ref={this.bourse} />
                 <Row style={{ marginLeft: "auto", marginRight: "auto" }}>
                     <Col>
                         <Card

@@ -12,6 +12,14 @@ class Bourse extends React.PureComponent {
         }
     }
 
+    addCrypto(newCrypto) {
+        console.log(this.state.arrCrypto);
+        this.setState({
+            arrCrypto: [...this.state.arrCrypto, newCrypto]
+        })
+        console.log(this.state.arrCrypto);
+    }
+
     deleteCrypto(keyCrypto) {
         var array = [...this.state.arrCrypto];
         var index = array.indexOf(keyCrypto.name);
