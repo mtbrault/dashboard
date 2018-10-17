@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { Card, Layout, Col, Row, Icon} from 'antd';
+import { Card, Layout, Col, Row, Icon } from 'antd';
+
+import BourseInfo from '../../../components/bourseInfo';
+
 
 const services = {
     bourse: {
@@ -8,7 +11,7 @@ const services = {
             name: "ETH",
             conversion: "USD"
         }, {
-            name: "ETH",
+            name: "BTC",
             conversion: "USD"
         }]
     }
@@ -38,7 +41,7 @@ class Bourse extends React.PureComponent {
                                         ]
                                     }
                                 >
-                                <p>{crypto.name} et {crypto.conversion}</p>
+                                    <BourseInfo crypto={crypto.name} conversion={crypto.conversion} />
                                 </Card>
                             </Col>
                         );

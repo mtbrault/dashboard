@@ -1,13 +1,26 @@
 import React from 'react';
-import axios from 'axios';
 
-import { Layout } from 'antd';
+import { Layout, Col, Row, Card } from 'antd';
+
+import Style from './myAccount.less';
+import FacebookCard from '../../../components/facebookCard';
+
+const { Content } = Layout;
 
 class MyAccount extends React.PureComponent {
-    
+
     render() {
         return (
-            <Layout><h3>Hello, :)</h3></Layout>
+            <Layout>
+                <Content style={{ background: '#fff', padding: 24, margin: 0, maxHeight: 200, marginBottom: 50 }}>
+                    <h3 className={Style.myAccTitle}>Bienvenue sur votre Dashboard</h3>
+                </Content>
+                <Row gutter={16}>
+                        <FacebookCard />
+                        <FacebookCard />
+                        <FacebookCard />
+                    </Row>
+            </Layout>
         );
     }
 }
