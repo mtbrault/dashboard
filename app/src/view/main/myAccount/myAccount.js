@@ -4,6 +4,8 @@ import { Layout, Col, Row, Card } from 'antd';
 
 import Style from './myAccount.less';
 import FacebookCard from '../../../components/facebookCard';
+import TwitterCard from '../../../components/twitterCard';
+import GoogleCard from '../../../components/googleCard';
 
 const { Content } = Layout;
 
@@ -17,8 +19,8 @@ class MyAccount extends React.PureComponent {
                 </Content>
                 <Row gutter={16}>
                         <FacebookCard />
-                        <FacebookCard />
-                        <FacebookCard />
+                        <TwitterCard />
+                        <GoogleCard />
                     </Row>
             </Layout>
         );
