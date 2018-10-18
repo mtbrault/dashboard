@@ -24,7 +24,7 @@ class AuthLayout extends React.PureComponent {
                     <Button type="primary" icon="user-add" size="large" 
                     className={Styles.btnInscription}>Inscription</Button>
                 </Link>
-                <LoginAzureAD />
+                {/* <LoginAzureAD /> */}
                 <span className={Styles.textAuth}>Created by ZackiChan & Matthias LeBrolt</span>
             </div>
         );

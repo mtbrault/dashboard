@@ -31,19 +31,27 @@ const servicesWidget = {
 
 const MeteoForm = ({ handleInputChange, inputCity }) => {
     return (
+        <div style={{display: "block"}}>
+            <label style={{display: "inline-block", fontWeight: "bold", color: "#1890ff"}}>Ville : </label>
         <Input type="text" placeholder="Entrez le nom d'une ville" name="inputCity"
-            onChange={handleInputChange} value={inputCity} />
+            onChange={handleInputChange} value={inputCity} style={{width: "50%", margin: 10, display: "inline-block"}}/>
+        </div>
     );
 }
 
 const BourseForm = ({ handleInputChange, inputTarget, inputCrypto }) => {
     return (
-        <Layout>
+        <Layout style={{background: "white"}}>
+            <div style={{display: "block"}}>
+            <label style={{display: "inline-block", fontWeight: "bold", color: "#1890ff"}}>Devise : </label>
             <Input type="text" placeholder="Entrez la devise" name="inputTarget"
-                onChange={handleInputChange} value={inputTarget} />
-
+                onChange={handleInputChange} value={inputTarget} style={{display: "inline-block", width: "50%", margin: 10}}/>
+            </div>
+            <div style={{display: "block"}}>
+            <label style={{display: "inline-block", fontWeight: "bold", color: "#1890ff"}}>Crypto : </label>
             <Input type="text" placeholder="Entrez le nom d'une crypto" name="inputCrypto"
-                onChange={handleInputChange} value={inputCrypto} />
+                onChange={handleInputChange} value={inputCrypto} style={{display: "inline-block", width: "50%", margin: 10}} />
+            </div>
         </Layout>
     );
 }
