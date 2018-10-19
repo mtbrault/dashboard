@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const moment = require('moment');
 // Require file.
 const config = require('./db');
 const users = require('./routes/user');
@@ -36,10 +37,47 @@ app.get('/', function (req, res) {
 });
 
 app.get('/about.json', function (req, res) {
-    res.json({test: {}})
+    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    if (ip.substr(0, 7) == "::ffff:") {
+      ip = ip.substr(7)
+    }
+	return res.json({
+		client: {
+			host: ip
+		},
+		server: {
+			current_time: moment().unix(),
+			services: [{
+				name: "weather",
+				widgets: [{
+					name: "city_temperature",
+					description: "Affichage de la température pour une ville",
+					params: [{
+						name: "city",
+						type: "string"
+					}]
+				}]
+			}, {
+				name: "stock_exchange",
+				widgets: [{
+					name: "monney_convertissor",
+					description: "Convertit une devise de monnaie en crypto monnaie",
+					params: [{
+						name: "monney_type",
+						type: "string"
+					},{
+						name: "cypto_type",
+						type: "string"
+					}]
+				}]
+			}]
+		}
+	});
 });
 
-const PORT = process.env.PORT || 5000;
+
+
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);

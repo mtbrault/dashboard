@@ -15,4 +15,4 @@ RUN npm install -g nodemon
 
 
 # start app
-CMD sleep 5 && npm start
+CMD sleep 10 && npm start
