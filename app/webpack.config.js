@@ -86,7 +86,7 @@ module.exports = {
         new FriendlyErrorsWebpackPlugin(
            {
             compilationSuccessInfo: {
-              messages: ['Hello Zack & Matthieu the application is runing at http://localhost:8080'],
+              messages: ['Hello Zack & Matthieu the application is runing at http://localhost:3000'],
               notes: ['Attention à bien push ! :)']
             },
             onErrors: function (severity, errors) {
