@@ -34,7 +34,7 @@ class BourseInfo extends React.Component {
             <div className={Style.cryptoBoard}>
                 <span className={Style.cryptoTitle}>{this.props.crypto} |
                 {this.state.change < 0 && <Icon type="fall" className={Style.changeInferrior} theme="outlined" />}
-                {this.state.change > 0 && <Icon type="fall" className={Style.changeSuperrior} theme="outlined" />}
+                {this.state.change > 0 && <Icon type="rise" className={Style.changeSuperrior} theme="outlined" />}
                 </span>
                 <hr style={{opacity: 0.5}}></hr>
                 <span className={Style.cryptoPrice}>Target : {this.props.conversion}</span>

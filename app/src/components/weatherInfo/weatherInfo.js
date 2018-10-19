@@ -15,7 +15,7 @@ const HotTemp = ({temperature}) => {
             </span>
             <img src={SunImg} />
         </div>
-    );
+    );  
 }
 
 const ColdTemp = ({temperature}) => {
@@ -60,6 +60,7 @@ class WeatherInfo extends React.Component {
         const country = ville;
         const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${country}&appid=${API_KEY}&units=metric`);
         const data = await api_call.json();
+        if (data.cod != 404) {
         this.setState({
             temperature: Math.round(data.main.temp),
             city: data.name,
@@ -68,6 +69,10 @@ class WeatherInfo extends React.Component {
             description: data.weather[0].description,
             error: ""
         })
+    } else {
+        return 404;
+    }
+
     }
 
     componentWillMount() {

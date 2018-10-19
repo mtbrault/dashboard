@@ -7,13 +7,12 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 module.exports = {
     devServer: {
       historyApiFallback: true,
-      quiet: true,
-      port: 8080
+      quiet: true
     },
     devtool: 'inline-source-map',
     entry: [
       require.resolve('react-dev-utils/webpackHotDevClient'),
-      './src/index.js'
+      './src/index.js',
   ],
     output: {
         path: path.join(__dirname, '/dist'),
@@ -87,7 +86,7 @@ module.exports = {
         new FriendlyErrorsWebpackPlugin(
            {
             compilationSuccessInfo: {
-              messages: ['Hello Zack & Matthieu the application is runing at http://localhost:8080'],
+              messages: ['Hello Zack & Matthieu the application is runing at http://localhost:3000'],
               notes: ['Attention à bien push ! :)']
             },
             onErrors: function (severity, errors) {

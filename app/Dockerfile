@@ -8,9 +8,8 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
 COPY package.json /usr/src/app/package.json
 
-EXPOSE 8080
+EXPOSE 3000
 
 RUN npm install
-RUN npm install -g nodemon
 
 CMD npm start

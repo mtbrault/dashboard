@@ -112,4 +112,9 @@ router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) =
     });
 });
 
+router.get('/mdr', function (req, res) {
+    res.send('mdr');
+});
+
+
 module.exports = router;
