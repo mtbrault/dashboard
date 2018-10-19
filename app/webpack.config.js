@@ -7,13 +7,12 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 module.exports = {
     devServer: {
       historyApiFallback: true,
-      quiet: true,
-      port: 8080
+      quiet: true
     },
     devtool: 'inline-source-map',
     entry: [
       require.resolve('react-dev-utils/webpackHotDevClient'),
-      './src/index.js'
+      './src/index.js',
   ],
     output: {
         path: path.join(__dirname, '/dist'),

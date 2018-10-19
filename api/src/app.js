@@ -35,6 +35,10 @@ app.get('/', function (req, res) {
     res.send('hello');
 });
 
+app.get('/about.json', function (req, res) {
+    res.json({test: {}})
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
