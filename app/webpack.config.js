@@ -8,7 +8,7 @@ module.exports = {
     devServer: {
       historyApiFallback: true,
       quiet: true,
-      port: 8080
+      port: 8181
     },
     devtool: 'inline-source-map',
     entry: [
