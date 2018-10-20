@@ -4,7 +4,7 @@ DASHBOARD Zack & Matthieu
 ## Start the app
 
 To start the app, execute the command : 'docker-compose build && docker-compose up'
-Now launch the dashboard at this [link][test]
+Now launch the dashboard at this [link](localhost:3000)
     [test]: localhost:3000
 
 ## Liste des services
