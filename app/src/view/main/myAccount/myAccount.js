@@ -10,6 +10,7 @@ import { Layout, Col, Row, Card, Icon, Modal, Form, Input, Select } from 'antd';
 
 import Meteo from '../services/meteo';
 import Bourse from '../services/bourse';
+import Steam from '../services/steam';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -26,6 +27,9 @@ const servicesWidget = {
             name: "BTC",
             conversion: "USD"
         }]
+    },
+    steam: {
+        steamId: ["76561198092225820"],
     }
 };
 
@@ -39,6 +43,16 @@ const MeteoForm = ({ handleInputChange, inputCity }) => {
     );
 }
 
+const SteamForm = ({ handleInputChange, inputSteamId }) => {
+    return (
+        <div style={{display: "block"}}>
+            <label style={{display: "inline-block", fontWeight: "bold", color: "#1890ff"}}>STEAM_ID : </label>
+        <Input type="text" placeholder="Entrez le steam ID d'un utilisateur" name="inputSteamId"
+            onChange={handleInputChange} value={inputSteamId} style={{width: "50%", margin: 10, display: "inline-block"}}/>
+        </div>
+    );
+}
+
 const BourseForm = ({ handleInputChange, inputTarget, inputCrypto }) => {
     return (
         <Layout style={{background: "white"}}>
@@ -48,7 +62,7 @@ const BourseForm = ({ handleInputChange, inputTarget, inputCrypto }) => {
                 onChange={handleInputChange} value={inputTarget} style={{display: "inline-block", width: "50%", margin: 10}}/>
             </div>
             <div style={{display: "block"}}>
-            <label style={{display: "inline-block", fontWeight: "bold", color: "#1890ff"}}>Crypto : </label>
+            <label style={{displaySteamID: "inline-block", fontWeight: "bold", color: "#1890ff"}}>Crypto : </label>
             <Input type="text" placeholder="Entrez le nom d'une crypto" name="inputCrypto"
                 onChange={handleInputChange} value={inputCrypto} style={{display: "inline-block", width: "50%", margin: 10}} />
             </div>
@@ -64,13 +78,15 @@ class MyAccount extends React.PureComponent {
             selectValue: "",
             inputCity: "",
             inputCrypto: "",
-            inputTarget: ""
+            inputTarget: "",
+            inputSteamId: ""
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.meteo = React.createRef();
         this.bourse = React.createRef();
+        this.steam = React.createRef();
     }
 
     handleInputChange(e) {
@@ -109,6 +125,12 @@ class MyAccount extends React.PureComponent {
             this.bourse.current.addCrypto(newCrypto);
             this.handleCancel();
             break;
+            case "steam":
+            if (this.state.inputSteamId > 10) {
+                this.steam.current.addNewSteamId(this.state.inputSteamId);
+                this.handleCancel();
+            }
+            break;
             default:
                 break;
         }
@@ -143,15 +165,18 @@ class MyAccount extends React.PureComponent {
 
                                 <Option value="meteo">Meteo</Option>
                                 <Option value="bourse">Bourse</Option>
+                                <Option value="steam">steam</Option>
                             </Select>
                             {this.state.selectValue == "meteo" && <MeteoForm handleInputChange={this.handleInputChange} inputCity={this.state.inputCity} />}
                             {this.state.selectValue == "bourse" && <BourseForm handleInputChange={this.handleInputChange} inputTarget={this.state.inputTarget} inputCrypto={this.state.inputCrypto} />}
+                            {this.state.selectValue == "steam" && <SteamForm handleInputChange={this.handleInputChange} inputSteamId={this.state.inputSteamId}  />}
 
                         </FormItem>
                     </form>
                 </Modal>
                 <Meteo {...this.state.services} ref={this.meteo} />
                 <Bourse {...this.state.services} ref={this.bourse} />
+                <Steam {...this.state.services} ref={this.steam} />
                 <Row style={{ marginLeft: "auto", marginRight: "auto" }}>
                     <Col>
                         <Card

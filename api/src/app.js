@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const moment = require('moment');
+const SteamApi = require('steam-api');
 // Require file.
 const config = require('./db');
 const users = require('./routes/user');
@@ -31,6 +32,32 @@ app.use(function (req, res, next) {
 });
 
 app.use('/api/users', users);
+
+const User = require('./models/Users.js')
+
+const addWeatherServiceCity = async (req, res, next) => {
+	User.findOne({
+        email: req.body.email
+    }).then(user => {
+        if(user) {
+			req.body.userID = user._id;
+		}});
+	try {	
+		const updatedUser = await User.findOneAndUpdate(
+			{_id: req.body.userID},
+			{ $push: { 'services.weather.city': req.body.city }} // Push new city which backend sent into your array located in services.weather.city
+		)	
+		res.json(updatedUser);
+	} catch(err) { next(err) }
+	User.findOne({
+        email: req.body.email
+    }).then(user => {
+        if(user) {
+			console.log(user);
+		}});
+}
+
+app.put('/newCity', addWeatherServiceCity)
 
 app.get('/', function (req, res) {
     res.send('hello');
@@ -74,8 +101,6 @@ app.get('/about.json', function (req, res) {
 		}
 	});
 });
-
-
 
 const PORT = process.env.PORT || 8080;
 

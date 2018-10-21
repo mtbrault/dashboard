@@ -38,7 +38,7 @@ class Bourse extends React.PureComponent {
                                     style={{ width: 300 }}
                                     actions={
                                         [
-                                            <Icon type="setting" />,
+                                            
                                             <Icon type="delete" onClick={this.deleteCrypto.bind(this, { crypto })} />
                                         ]
                                     }

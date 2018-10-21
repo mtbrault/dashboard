@@ -17,6 +17,21 @@ class Meteo extends React.PureComponent {
     this.setState({ arrWeather: [...this.state.arrWeather, newCity]})
   }
 
+  // addNewCity = (newCity) => {
+  //   const data  = { email: localStorage.userEmail, city: newCity }
+    
+  //   return fetch(`http://localhost:8080/newCity`, {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     method: 'PUT',
+  //     body: JSON.stringify(data) // access this in back with req.body
+  //   })
+  //   .then(response => response.ok ? response.json() : Promise.reject(response.statusText))
+  //   .then(data => console.log(data)) // this should be the updated user, which you can use to update state of your react app
+  //   .catch(err => console.log(err))
+  // }
+  
   deleteCity(keyCity) {
     var array = [...this.state.arrWeather];
     var index = array.indexOf(keyCity.ville);
@@ -37,7 +52,7 @@ class Meteo extends React.PureComponent {
                   cover={<img alt="example" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Paris_-_Eiffelturm_und_Marsfeld2.jpg/1200px-Paris_-_Eiffelturm_und_Marsfeld2.jpg" width="298" height="180" />}
                   actions={
                     [
-                      <Icon type="setting" />,
+
                       <Icon type="delete" onClick={this.deleteCity.bind(this, { ville })} />
                     ]
                   }
