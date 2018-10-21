@@ -17,5 +17,5 @@ Now launch the dashboard at this [link](localhost:3000)
 * News :
     * Display a list of news in a given theme
 * Football :
-    * Widget 1
-    * Widget 2
+    * Display the rank of a selected team in its championship
+    * Display the result of the last match
