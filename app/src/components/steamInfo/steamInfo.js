@@ -24,14 +24,13 @@ class SteamInfo extends React.Component {
         const data = await api_call.json();
         const steamData = data.response.players[0];
         if (data.response.players[0] != null) {
-        var d = new Date(steamData.lastlogoff);
+        var d = new Date(1369241824);
         var theDate = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear()
         this.setState({
             avatar: steamData.avatarfull,
             pseudo: steamData.personaname,
             profileUrl: steamData.profileurl,
             steamId: steamData.steamid,
-            lastlog: theDate
         })
     }  else {
         console.log("lol");
@@ -49,7 +48,6 @@ class SteamInfo extends React.Component {
                 <div>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/512px-Steam_icon_logo.svg.png" style={{ display: "inline-block", paddingBottom: 10 }} width="30px" /> 
                     <h2 className={Style.steamName}>{this.state.pseudo}</h2>
-                    <h2 className={Style.steamLog}>Date de naissance : {this.state.lastlog} </h2>
                     <h2 className={Style.steamLog}>STEAM_ID : {this.state.steamId} </h2>
 
                 </div>
