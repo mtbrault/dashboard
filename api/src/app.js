@@ -85,6 +85,43 @@ app.get('/about.json', function (req, res) {
 						type: "string"
 					}]
 				}]
+			}, {
+				name: "steam",
+				widgets: [{
+					name: "picture_and_birthday",
+					description: "Affiche la date de naissance et la photo d'un user steam",
+					params: [{
+						name: "id",
+						type: "string"
+					}]
+				}]
+			}, {
+				name: "news",
+				widgets: [{
+					name: "categories_articles",
+					description: "Affiche une liste d'article concernant un thème choisit",
+					params: [{
+						name: "Thème",
+						type: "integer"
+					}]
+				}]
+			}, {
+				name: "footabll",
+				widgets: [{
+					name: "rank",
+					description: "Affiche le rang d'une équipe dans son championnat",
+					params: [{
+						name: "id",
+						type: "integer"
+					}]
+				}, {
+					name: "last_score",
+					description: "Affiche le score du derner match",
+					params: [{
+						name: "id",
+						type: "integer"
+					}]
+				}]
 			}]
 		}
 	});
