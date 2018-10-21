@@ -23,9 +23,7 @@ class SteamInfo extends React.Component {
         const api_call = await fetch(`http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${API_KEY}&steamids=${steamIdentifier}`);
         const data = await api_call.json();
         const steamData = data.response.players[0];
-        if (!steamData.length) {
-            return null;
-        }
+        if (data.response.players[0] != null) {
         var d = new Date(steamData.lastlogoff);
         var theDate = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear()
         this.setState({
@@ -35,8 +33,10 @@ class SteamInfo extends React.Component {
             steamId: steamData.steamid,
             lastlog: theDate
         })
-        console.log(this.state);
-
+    }  else {
+        console.log("lol");
+        return null;
+    }
     }
 
     componentWillMount() {

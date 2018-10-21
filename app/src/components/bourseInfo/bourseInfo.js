@@ -18,11 +18,16 @@ class BourseInfo extends React.Component {
         const convert = conversion.toLowerCase();
         const api_call = await fetch(`https://api.cryptonator.com/api/ticker/${crypto_name}-${convert}`);
         const data = await api_call.json();
+        if (data.success == true) {
+
         this.setState({
             price: Math.round(data.ticker.price * 100) / 100,
             volume: Math.round(data.ticker.volume * 100) / 100,
             change: data.ticker.change
         })
+    } else {
+        return null;
+    }
     }
 
     componentWillMount() {

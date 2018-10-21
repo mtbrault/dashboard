@@ -17,21 +17,6 @@ class Meteo extends React.PureComponent {
     this.setState({ arrWeather: [...this.state.arrWeather, newCity]})
   }
 
-  // addNewCity = (newCity) => {
-  //   const data  = { email: localStorage.userEmail, city: newCity }
-    
-  //   return fetch(`http://localhost:8080/newCity`, {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     method: 'PUT',
-  //     body: JSON.stringify(data) // access this in back with req.body
-  //   })
-  //   .then(response => response.ok ? response.json() : Promise.reject(response.statusText))
-  //   .then(data => console.log(data)) // this should be the updated user, which you can use to update state of your react app
-  //   .catch(err => console.log(err))
-  // }
-  
   deleteCity(keyCity) {
     var array = [...this.state.arrWeather];
     var index = array.indexOf(keyCity.ville);

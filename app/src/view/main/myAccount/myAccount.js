@@ -11,6 +11,7 @@ import { Layout, Col, Row, Card, Icon, Modal, Form, Input, Select } from 'antd';
 import Meteo from '../services/meteo';
 import Bourse from '../services/bourse';
 import Steam from '../services/steam';
+import News from '../services/news';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -30,6 +31,9 @@ const servicesWidget = {
     },
     steam: {
         steamId: ["76561198092225820"],
+    },
+    news: {
+        infoType: ['economy'],
     }
 };
 
@@ -87,6 +91,7 @@ class MyAccount extends React.PureComponent {
         this.meteo = React.createRef();
         this.bourse = React.createRef();
         this.steam = React.createRef();
+        this.news = React.createRef();
     }
 
     handleInputChange(e) {
@@ -165,7 +170,7 @@ class MyAccount extends React.PureComponent {
 
                                 <Option value="meteo">Meteo</Option>
                                 <Option value="bourse">Bourse</Option>
-                                <Option value="steam">steam</Option>
+                                <Option value="steam">Steam</Option>
                             </Select>
                             {this.state.selectValue == "meteo" && <MeteoForm handleInputChange={this.handleInputChange} inputCity={this.state.inputCity} />}
                             {this.state.selectValue == "bourse" && <BourseForm handleInputChange={this.handleInputChange} inputTarget={this.state.inputTarget} inputCrypto={this.state.inputCrypto} />}
@@ -174,9 +179,12 @@ class MyAccount extends React.PureComponent {
                         </FormItem>
                     </form>
                 </Modal>
+                
                 <Meteo {...this.state.services} ref={this.meteo} />
                 <Bourse {...this.state.services} ref={this.bourse} />
                 <Steam {...this.state.services} ref={this.steam} />
+                <News {...this.state.services} ref={this.news} />
+
                 <Row style={{ marginLeft: "auto", marginRight: "auto" }}>
                     <Col>
                         <Card

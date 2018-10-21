@@ -35,25 +35,14 @@ app.use('/api/users', users);
 const User = require('./models/Users.js')
 
 const addWeatherServiceCity = async (req, res, next) => {
-	User.findOne({
-        email: req.body.email
-    }).then(user => {
-        if(user) {
-			req.body.userID = user._id;
-		}});
-	try {	
-		const updatedUser = await User.findOneAndUpdate(
-			{_id: req.body.userID},
-			{ $push: { 'services.weather.city': req.body.city }} // Push new city which backend sent into your array located in services.weather.city
-		)	
-		res.json(updatedUser);
-	} catch(err) { next(err) }
-	User.findOne({
-        email: req.body.email
-    }).then(user => {
-        if(user) {
-			console.log(user);
-		}});
+	try {
+        const myUser = await User.findOne({ email: req.body.email})
+        const updatedUser = await User.findOneAndUpdate(
+            {_id: myUser._id},
+            { $push: { 'services.weather.city': req.body.city }} // Push new city which backend sent into your array located in services.weather.city
+        )
+        res.json(updatedUser);
+    } catch(err) { next(err) }
 }
 
 app.put('/newCity', addWeatherServiceCity)
