@@ -19,22 +19,16 @@ const Option = Select.Option;
 
 const servicesWidget = {
     weather: {
-        city: ["Paris", "Lille", "London"],
+        city: [],
     },
     bourse: {
-        crypto: [{
-            name: "ETH",
-            conversion: "USD"
-        }, {
-            name: "BTC",
-            conversion: "USD"
-        }]
+        crypto: []
     },
     steam: {
-        steamId: ["76561198092225820"],
+        steamId: [],
     },
     news: {
-        infoType: ['business'],
+        infoType: [],
     },
     football: {
         bestSoccer: [],
