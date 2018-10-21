@@ -101,11 +101,6 @@ app.get('/about.json', function (req, res) {
 	});
 });
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 225a574a31e642c05c36c38f7643be4e80a73b69
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
