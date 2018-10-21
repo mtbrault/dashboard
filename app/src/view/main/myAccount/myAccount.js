@@ -12,6 +12,7 @@ import Meteo from '../services/meteo';
 import Bourse from '../services/bourse';
 import Steam from '../services/steam';
 import News from '../services/news';
+import { Button } from 'antd/lib/radio';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -33,42 +34,66 @@ const servicesWidget = {
         steamId: ["76561198092225820"],
     },
     news: {
-        infoType: ['economy'],
+        infoType: ['business'],
     }
 };
 
 const MeteoForm = ({ handleInputChange, inputCity }) => {
     return (
-        <div style={{display: "block"}}>
-            <label style={{display: "inline-block", fontWeight: "bold", color: "#1890ff"}}>Ville : </label>
-        <Input type="text" placeholder="Entrez le nom d'une ville" name="inputCity"
-            onChange={handleInputChange} value={inputCity} style={{width: "50%", margin: 10, display: "inline-block"}}/>
+        <div style={{ display: "block" }}>
+            <label style={{ display: "inline-block", fontWeight: "bold", color: "#1890ff" }}>Ville : </label>
+            <Input type="text" placeholder="Entrez le nom d'une ville" name="inputCity"
+                onChange={handleInputChange} value={inputCity} style={{ width: "50%", margin: 10, display: "inline-block" }} />
         </div>
     );
 }
 
 const SteamForm = ({ handleInputChange, inputSteamId }) => {
     return (
-        <div style={{display: "block"}}>
-            <label style={{display: "inline-block", fontWeight: "bold", color: "#1890ff"}}>STEAM_ID : </label>
-        <Input type="text" placeholder="Entrez le steam ID d'un utilisateur" name="inputSteamId"
-            onChange={handleInputChange} value={inputSteamId} style={{width: "50%", margin: 10, display: "inline-block"}}/>
+        <div style={{ display: "block" }}>
+            <label style={{ display: "inline-block", fontWeight: "bold", color: "#1890ff" }}>STEAM_ID : </label>
+            <Input type="text" placeholder="Entrez le steam ID d'un utilisateur" name="inputSteamId"
+                onChange={handleInputChange} value={inputSteamId} style={{ width: "50%", margin: 10, display: "inline-block" }} />
+        </div>
+    );
+}
+
+const NewsForm = ({handleChangeNews}) => {
+    return (
+        <div style={{ display: "block" }}>
+            <label style={{ display: "inline-block", fontWeight: "bold", color: "#1890ff" }}>Themes de journaux : </label>
+            <Select
+                showSearch
+                style={{ width: 200 }}
+                placeholder="Sélectionner un themes"
+                optionFilterProp="children"
+                onChange={handleChangeNews}
+                filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+            >
+
+                <Option value="business">Economie / Business</Option>
+                <Option value="health">Santé / Bien-être</Option>
+                <Option value="entertainment">People / Mag</Option>
+                <Option value="science">Science</Option>
+                <Option value="sports">Sport</Option>
+                <Option value="technology">Technologie</Option>
+            </Select>
         </div>
     );
 }
 
 const BourseForm = ({ handleInputChange, inputTarget, inputCrypto }) => {
     return (
-        <Layout style={{background: "white"}}>
-            <div style={{display: "block"}}>
-            <label style={{display: "inline-block", fontWeight: "bold", color: "#1890ff"}}>Devise : </label>
-            <Input type="text" placeholder="Entrez la devise" name="inputTarget"
-                onChange={handleInputChange} value={inputTarget} style={{display: "inline-block", width: "50%", margin: 10}}/>
+        <Layout style={{ background: "white" }}>
+            <div style={{ display: "block" }}>
+                <label style={{ display: "inline-block", fontWeight: "bold", color: "#1890ff" }}>Devise : </label>
+                <Input type="text" placeholder="Entrez la devise" name="inputTarget"
+                    onChange={handleInputChange} value={inputTarget} style={{ display: "inline-block", width: "50%", margin: 10 }} />
             </div>
-            <div style={{display: "block"}}>
-            <label style={{displaySteamID: "inline-block", fontWeight: "bold", color: "#1890ff"}}>Crypto : </label>
-            <Input type="text" placeholder="Entrez le nom d'une crypto" name="inputCrypto"
-                onChange={handleInputChange} value={inputCrypto} style={{display: "inline-block", width: "50%", margin: 10}} />
+            <div style={{ display: "block" }}>
+                <label style={{ displaySteamID: "inline-block", fontWeight: "bold", color: "#1890ff" }}>Crypto : </label>
+                <Input type="text" placeholder="Entrez le nom d'une crypto" name="inputCrypto"
+                    onChange={handleInputChange} value={inputCrypto} style={{ display: "inline-block", width: "50%", margin: 10 }} />
             </div>
         </Layout>
     );
@@ -80,6 +105,7 @@ class MyAccount extends React.PureComponent {
         this.state = {
             services: servicesWidget,
             selectValue: "",
+            selectNews: "",
             inputCity: "",
             inputCrypto: "",
             inputTarget: "",
@@ -87,6 +113,7 @@ class MyAccount extends React.PureComponent {
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeNews = this.handleChangeNews.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.meteo = React.createRef();
         this.bourse = React.createRef();
@@ -104,6 +131,10 @@ class MyAccount extends React.PureComponent {
         this.setState({ selectValue: value })
     }
 
+    handleChangeNews(value) {
+        this.setState({ selectNews: value })
+    }
+
     handleSubmit(e) {
         e.preventDefault();
     }
@@ -115,27 +146,30 @@ class MyAccount extends React.PureComponent {
     }
 
     handleOk = () => {
-        switch(this.state.selectValue) {
+        switch (this.state.selectValue) {
             case "meteo":
-            if (this.state.inputCity.length > 2) {
-                this.meteo.current.addNewCity(this.state.inputCity);
-                this.handleCancel();
-            }
-            break;
+                if (this.state.inputCity.length > 2) {
+                    this.meteo.current.addNewCity(this.state.inputCity);
+                    this.handleCancel();
+                }
+                break;
             case "bourse":
-            const newCrypto = {
-                name: this.state.inputCrypto,
-                conversion: this.state.inputTarget
-            }
-            this.bourse.current.addCrypto(newCrypto);
-            this.handleCancel();
-            break;
-            case "steam":
-            if (this.state.inputSteamId > 10) {
-                this.steam.current.addNewSteamId(this.state.inputSteamId);
+                const newCrypto = {
+                    name: this.state.inputCrypto,
+                    conversion: this.state.inputTarget
+                }
+                this.bourse.current.addCrypto(newCrypto);
                 this.handleCancel();
-            }
-            break;
+                break;
+            case "steam":
+                if (this.state.inputSteamId > 10) {
+                    this.steam.current.addNewSteamId(this.state.inputSteamId);
+                    this.handleCancel();
+                }
+                break;
+            case "news": 
+                console.log(this.state.selectNews);
+                this.news.current.addNews(this.state.selectNews);
             default:
                 break;
         }
@@ -171,15 +205,17 @@ class MyAccount extends React.PureComponent {
                                 <Option value="meteo">Meteo</Option>
                                 <Option value="bourse">Bourse</Option>
                                 <Option value="steam">Steam</Option>
+                                <Option value="news">News</Option>
                             </Select>
                             {this.state.selectValue == "meteo" && <MeteoForm handleInputChange={this.handleInputChange} inputCity={this.state.inputCity} />}
                             {this.state.selectValue == "bourse" && <BourseForm handleInputChange={this.handleInputChange} inputTarget={this.state.inputTarget} inputCrypto={this.state.inputCrypto} />}
-                            {this.state.selectValue == "steam" && <SteamForm handleInputChange={this.handleInputChange} inputSteamId={this.state.inputSteamId}  />}
+                            {this.state.selectValue == "steam" && <SteamForm handleInputChange={this.handleInputChange} inputSteamId={this.state.inputSteamId} />}
+                            {this.state.selectValue == "news" && <NewsForm handleChangeNews={this.handleChangeNews} />}
 
                         </FormItem>
                     </form>
                 </Modal>
-                
+
                 <Meteo {...this.state.services} ref={this.meteo} />
                 <Bourse {...this.state.services} ref={this.bourse} />
                 <Steam {...this.state.services} ref={this.steam} />

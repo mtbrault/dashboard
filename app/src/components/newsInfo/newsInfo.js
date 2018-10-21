@@ -20,32 +20,29 @@ class NewsInfo extends React.Component {
         position: 0
     }
 
-    getNews = async (infoType) => {
-        console.log(infoType)
-        if (infoType == "economy") {
-            const api_call = await fetch(`https://newsapi.org/v2/top-headlines?country=fr&category=business&apiKey=d0dd4cc912b5489ca0e37d6295fdb10c`);
-            const data = await api_call.json();
-            console.log(data);
-            this.setState({
-                type: infoType,
-                articles: data.articles,
-                title: data.articles[0].title,
-                img: data.articles[0].urlToImage,
-                url: data.articles[0].url,
-                text: data.articles[0].description,
-                auteur: data.articles[0].author,
-                source: data.articles[0].source.name
-            })
-        }
+    getNews = async () => {
+        const api_call = await fetch(`https://newsapi.org/v2/top-headlines?country=fr&category=${this.props.infoType}&apiKey=d0dd4cc912b5489ca0e37d6295fdb10c`);
+        const data = await api_call.json();
+        console.log(data);
+        this.setState({
+            articles: data.articles,
+            title: data.articles[0].title,
+            img: data.articles[0].urlToImage,
+            url: data.articles[0].url,
+            text: data.articles[0].description,
+            auteur: data.articles[0].author,
+            source: data.articles[0].source.name
+        })
+
     }
 
-    newAdd = async () => {
-        var test = this.state.position;
-        test++;
-        console.log(test)
-        this.setState({ position: test })
-        if (this.state.type == "economy") {
-            const api_call = await fetch(`https://newsapi.org/v2/top-headlines?country=fr&category=business&apiKey=d0dd4cc912b5489ca0e37d6295fdb10c`);
+    newLess = async () => {
+        if (this.state.position != 0) {
+            var test = this.state.position;
+            test--;
+            console.log(test)
+            this.setState({ position: test })
+            const api_call = await fetch(`https://newsapi.org/v2/top-headlines?country=fr&category=${this.props.infoType}&apiKey=d0dd4cc912b5489ca0e37d6295fdb10c`);
             const data = await api_call.json();
             this.setState({
                 title: data.articles[this.state.position].title,
@@ -55,7 +52,27 @@ class NewsInfo extends React.Component {
                 auteur: data.articles[this.state.position].author,
                 source: data.articles[this.state.position].source.name
             })
-            console.log(this.state.title)
+        }
+
+    }
+
+    newAdd = async () => {
+
+        if (this.state.position != 20) {
+            var test = this.state.position;
+            test++;
+            console.log(test)
+            this.setState({ position: test })
+            const api_call = await fetch(`https://newsapi.org/v2/top-headlines?country=fr&category=${this.props.infoType}&apiKey=d0dd4cc912b5489ca0e37d6295fdb10c`);
+            const data = await api_call.json();
+            this.setState({
+                title: data.articles[this.state.position].title,
+                img: data.articles[this.state.position].urlToImage,
+                url: data.articles[this.state.position].url,
+                text: data.articles[this.state.position].description,
+                auteur: data.articles[this.state.position].author,
+                source: data.articles[this.state.position].source.name
+            })
         }
     }
 
@@ -63,6 +80,9 @@ class NewsInfo extends React.Component {
         this.newAdd();
     }
 
+    LessArticle() {
+        this.newLess();
+    }
     componentDidMount() {
         this.getNews(this.props.infoType)
     }
@@ -76,7 +96,8 @@ class NewsInfo extends React.Component {
                     <span className={Style.newsText}>{this.state.text}</span>
                     <span className={Style.newsAuthor}>Article rédigé par : {this.state.auteur} de {this.state.source} </span>
                 </div>
-                <center><Button type="primary" style={{ background: "black", margin: 10 }} onClick={this.NewArticle.bind(this)}>Nouvelle Article</Button></center>
+                <center>                <Button type="primary" style={{ background: "red", margin: 10 }} onClick={this.LessArticle.bind(this)}>Précedent</Button>
+                    <Button type="primary" style={{ margin: 10 }} onClick={this.NewArticle.bind(this)}>Suivant</Button></center>
             </div>
         );
     }
