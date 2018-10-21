@@ -96,7 +96,8 @@ class NewsInfo extends React.Component {
                     <span className={Style.newsText}>{this.state.text}</span>
                     <span className={Style.newsAuthor}>Article rédigé par : {this.state.auteur} de {this.state.source} </span>
                 </div>
-                <center>                <Button type="primary" style={{ background: "red", margin: 10 }} onClick={this.LessArticle.bind(this)}>Précedent</Button>
+                <center>
+                    <Button type="primary" style={{ background: "red", margin: 10 }} onClick={this.LessArticle.bind(this)}>Précedent</Button>
                     <Button type="primary" style={{ margin: 10 }} onClick={this.NewArticle.bind(this)}>Suivant</Button></center>
             </div>
         );

@@ -12,7 +12,7 @@ import Meteo from '../services/meteo';
 import Bourse from '../services/bourse';
 import Steam from '../services/steam';
 import News from '../services/news';
-import { Button } from 'antd/lib/radio';
+import FootBall from '../services/football';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -35,6 +35,9 @@ const servicesWidget = {
     },
     news: {
         infoType: ['business'],
+    },
+    football: {
+        bestSoccer: [],
     }
 };
 
@@ -58,10 +61,38 @@ const SteamForm = ({ handleInputChange, inputSteamId }) => {
     );
 }
 
+
+const FootBallForm = ({handleChangeFoot, footTeams }) => {    
+    return (
+        <div style={{ display: "block" }}>
+            <label style={{ display: "inline-block", fontWeight: "bold", color: "#1890ff" }}>Listes des equipes : </label>
+            <Select
+                showSearch
+                style={{ width: 200 }}
+                placeholder="Sélectionner un themes"
+                optionFilterProp="children"
+                onChange={handleChangeFoot}
+                filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+            >
+
+                {footTeams.map(footBallTeam => {
+            return (
+                <Option key={footBallTeam.country_id} value={footBallTeam.country_id}>{footBallTeam.country_name}</Option>
+            )
+            
+            })}
+            </Select>
+        </div>
+    );
+}
+
+
 const NewsForm = ({handleChangeNews}) => {
+
     return (
         <div style={{ display: "block" }}>
             <label style={{ display: "inline-block", fontWeight: "bold", color: "#1890ff" }}>Themes de journaux : </label>
+                    
             <Select
                 showSearch
                 style={{ width: 200 }}
@@ -72,11 +103,7 @@ const NewsForm = ({handleChangeNews}) => {
             >
 
                 <Option value="business">Economie / Business</Option>
-                <Option value="health">Santé / Bien-être</Option>
-                <Option value="entertainment">People / Mag</Option>
-                <Option value="science">Science</Option>
-                <Option value="sports">Sport</Option>
-                <Option value="technology">Technologie</Option>
+
             </Select>
         </div>
     );
@@ -109,16 +136,29 @@ class MyAccount extends React.PureComponent {
             inputCity: "",
             inputCrypto: "",
             inputTarget: "",
-            inputSteamId: ""
+            inputSteamId: "",
+            selectFoot: "",
+            footTeams: [],
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleChangeNews = this.handleChangeNews.bind(this);
+        this.handleChangeFoot = this.handleChangeFoot.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.meteo = React.createRef();
         this.bourse = React.createRef();
         this.steam = React.createRef();
         this.news = React.createRef();
+        this.football = React.createRef();
+    }
+
+    getSoccer = async () => {
+        const api_call = await fetch(`https://apifootball.com/api/?action=get_countries&APIkey=8b887218abab28840d0c3173840b63b3e501ce7bb9d7ee1a796f44cd290059af`);
+        const data = await api_call.json();
+        this.setState({
+            footTeams: data
+        })
+        console.log(this.state.footTeams);
     }
 
     handleInputChange(e) {
@@ -127,12 +167,21 @@ class MyAccount extends React.PureComponent {
         })
     }
 
+componentDidMount() {
+    this.getSoccer();
+}
+
     handleChange(value) {
         this.setState({ selectValue: value })
     }
 
     handleChangeNews(value) {
         this.setState({ selectNews: value })
+    }
+
+
+    handleChangeFoot(value) {
+        this.setState({ selectFoot: value })
     }
 
     handleSubmit(e) {
@@ -170,6 +219,11 @@ class MyAccount extends React.PureComponent {
             case "news": 
                 console.log(this.state.selectNews);
                 this.news.current.addNews(this.state.selectNews);
+                this.handleCancel();
+            case "football": 
+                console.log(this.state.selectFoot);
+                this.football.current.addNewTeams(this.state.selectFoot);
+                this.handleCancel();
             default:
                 break;
         }
@@ -206,17 +260,20 @@ class MyAccount extends React.PureComponent {
                                 <Option value="bourse">Bourse</Option>
                                 <Option value="steam">Steam</Option>
                                 <Option value="news">News</Option>
+                                <Option value="football">Football</Option>
                             </Select>
                             {this.state.selectValue == "meteo" && <MeteoForm handleInputChange={this.handleInputChange} inputCity={this.state.inputCity} />}
                             {this.state.selectValue == "bourse" && <BourseForm handleInputChange={this.handleInputChange} inputTarget={this.state.inputTarget} inputCrypto={this.state.inputCrypto} />}
                             {this.state.selectValue == "steam" && <SteamForm handleInputChange={this.handleInputChange} inputSteamId={this.state.inputSteamId} />}
                             {this.state.selectValue == "news" && <NewsForm handleChangeNews={this.handleChangeNews} />}
+                            {this.state.selectValue == "football" && <FootBallForm handleChangeFoot={this.handleChangeFoot} footTeams={this.state.footTeams}/>}
 
                         </FormItem>
                     </form>
                 </Modal>
 
                 <Meteo {...this.state.services} ref={this.meteo} />
+                <FootBall {...this.state.services} ref={this.football} />
                 <Bourse {...this.state.services} ref={this.bourse} />
                 <Steam {...this.state.services} ref={this.steam} />
                 <News {...this.state.services} ref={this.news} />
