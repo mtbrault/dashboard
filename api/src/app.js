@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const moment = require('moment');
-const SteamApi = require('steam-api');
 // Require file.
 const config = require('./db');
 const users = require('./routes/user');
@@ -102,6 +101,11 @@ app.get('/about.json', function (req, res) {
 	});
 });
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 225a574a31e642c05c36c38f7643be4e80a73b69
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
