@@ -13,9 +13,4 @@ EXPOSE 8080
 RUN npm install
 RUN npm install -g nodemon
 
-<<<<<<< HEAD
-=======
-
-# start app
->>>>>>> ef230cb333b30f7a8b25d9534ed0235af0d07d56
 CMD sleep 10 && npm start
