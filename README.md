@@ -12,3 +12,10 @@ Now launch the dashboard at this [link](localhost:3000)
     * Display the weather in a city that you configure
 * Stock Exchange :
 	* Convert a monney type into a crypto monney type
+* Steam :
+    * Display avatar and link for steam's user
+* News :
+    * Display a list of news in a given theme
+* Football :
+    * Widget 1
+    * Widget 2
